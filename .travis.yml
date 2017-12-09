@@ -21,7 +21,8 @@ notifications:
 sudo: false
 
 script:
-  - ./gradlew clean test
+  - ./gradlew clean cobertura
+  - if (( $TRAVIS_JAVA_VERSION >= 8 )); then ./gradlew coveralls; fi
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
